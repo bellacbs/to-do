@@ -1,6 +1,6 @@
 import * as jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { USER_ROLES } from "../entities/User";
+import { USER_ROLES } from "../model/User";
 
 export interface AuthenticationData {
     id: string
