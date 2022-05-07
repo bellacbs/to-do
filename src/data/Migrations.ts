@@ -4,7 +4,7 @@ export class Migrations extends BaseDatabase {
     static createTables = () => BaseDatabase.connection
     .raw(
         `
-        CREATE TABLE IF NOT EXISTS to_do_user (
+        CREATE TABLE IF NOT EXISTS to_do_users (
             id VARCHAR(255) PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE,
@@ -12,7 +12,7 @@ export class Migrations extends BaseDatabase {
             role VARCHAR(255) NOT NULL
         );
 
-        CREATE TABLE IF NOT EXISTS to_do_task(
+        CREATE TABLE IF NOT EXISTS to_do_tasks(
             id VARCHAR(255) PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
             description VARCHAR(255) NOT NULL,
