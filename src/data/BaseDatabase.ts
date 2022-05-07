@@ -3,7 +3,13 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export class BaseDatabase {
+export default class BaseDataBase {
+
+    protected static tableNames = {
+        toDoUsers: "to_do_users",
+        toDoTasks: "to_do_tasks"
+    }
+
     protected static connection: Knex = knex({
         client: "mysql",
         connection: {

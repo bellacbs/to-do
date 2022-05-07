@@ -1,7 +1,7 @@
-import { BaseDatabase } from "./BaseDatabase"
+import BaseDataBase from "./BaseDataBase";
 
-export class Migrations extends BaseDatabase {
-    static createTables = () => BaseDatabase.connection
+export class Migrations extends BaseDataBase {
+    static createTables = () => BaseDataBase.connection
     .raw(
         `
         CREATE TABLE IF NOT EXISTS to_do_users (
@@ -16,13 +16,14 @@ export class Migrations extends BaseDatabase {
             id VARCHAR(255) PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
             description VARCHAR(255) NOT NULL,
-            limite_date DATE NOT NULL,
+            limit_date DATE NOT NULL,
+            limit_time TIME NOT NULL,
             creator_user_id VARCHAR(255) NOT NULL,
             FOREIGN KEY(creator_user_id) REFERENCES to_do_user(id)
         );
         `
     )
-    .then(() => console.log("Tabelas criadas"))
+    .then(() => console.log("Created tables"))
     .catch((error: any) => console.log(error.message || error.sqlMessage))
     
 
