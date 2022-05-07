@@ -16,8 +16,8 @@ export class Migrations extends BaseDataBase {
             id VARCHAR(255) PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
             description VARCHAR(255) NOT NULL,
-            limit_date DATE NOT NULL,
-            limit_time TIME NOT NULL,
+            limit_date DATETIME NOT NULL,
+            edited_time DATETIME NOT NULL,
             creator_user_id VARCHAR(255) NOT NULL,
             FOREIGN KEY(creator_user_id) REFERENCES to_do_user(id)
         );
