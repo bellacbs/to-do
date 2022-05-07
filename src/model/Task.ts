@@ -1,70 +1,96 @@
-export class Task{
+export class Task {
     constructor(
         private id: string,
         private title: string,
         private description: string,
         private createdTime: Date,
         private limitDate: Date,
-        private editedTime: Date,
+        private editedTime: Date | null,
+        private status: TASK_STATUS,
+        private creatorUserId: string
 
-    ){}
+    ) { }
 
-    getId(){
+    getId() {
         return this.id
     }
-    getTitle(){
+    getTitle() {
         return this.title
     }
-    getDescription(){
+    getDescription() {
         return this.description
     }
-    getCreatedTime(){
+    getCreatedTime() {
         return this.createdTime
     }
-    getLimitDate(){
+    getLimitDate() {
         return this.limitDate
     }
-    getEditedTime(){
+    getEditedTime() {
         return this.editedTime
     }
 
-    setId(id: string){
+    getStatus() {
+        return this.status
+    }
+
+    getCreatorUserId() {
+        return this.creatorUserId
+    }
+
+    setId(id: string) {
         this.id = id
     }
 
-    setTitle(title: string){
+    setTitle(title: string) {
         this.title = title
     }
 
-    setDescription(description: string){
+    setDescription(description: string) {
         this.description = description
     }
-    setCreatedTime(createdTime: Date){
+    setCreatedTime(createdTime: Date) {
         this.createdTime = createdTime
     }
 
-    setLimitDate(limitDate: Date){
+    setLimitDate(limitDate: Date) {
         this.limitDate = limitDate
     }
 
-    setEditedTime(editedTime: Date){
+    setEditedTime(editedTime: Date) {
         this.editedTime = editedTime
     }
 
-    static toTaskModel(task: any): Task{
+    setStatus(status: TASK_STATUS) {
+        this.status = status
+    }
+
+    setCreatorUserId(creatorUserId: string) {
+        this.creatorUserId = creatorUserId
+    }
+
+    static toTaskModel(task: any): Task {
         return new Task(
             task.id,
             task.title,
             task.description,
             task.createdTime || task.created_time,
             task.limitDate || task.limit_date,
-            task.editedTime || task.edited_time
+            task.editedTime || task.edited_time,
+            task.status,
+            task.creatorUserId || task.creator_user_id
         )
     }
 }
 
-export interface TaskInputDTO{
+export interface TaskInputDTO {
     title: string,
     description: string,
     limitDate: string,
+}
+
+export enum TASK_STATUS {
+    TODO = "TODO",
+    DOING = "DOING",
+    DONE = "DONE"
 }
