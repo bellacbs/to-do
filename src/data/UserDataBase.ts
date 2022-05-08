@@ -38,4 +38,16 @@ export class UserDatabase extends BaseDataBase implements UserRepository {
         return User.toUserModel(result[0]);
     }
 
+    public async getUserById(id: string): Promise<User | null> {
+        const result = await BaseDataBase.connection
+            .select("*")
+            .from(BaseDataBase.tableNames.toDoUsers)
+            .where({ id });
+
+        if (result.length === 0) {
+            return null
+        }
+        return User.toUserModel(result[0]);
+    }
+
 }
