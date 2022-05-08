@@ -3,6 +3,7 @@ import { InvalidInputError } from "../error/InvalidInputError";
 import { NotAllowedError } from "../error/NotAllowedError";
 import { NotFoundElementError } from "../error/NotFoundElementError";
 import { Task, TaskInputDTO, TASK_STATUS } from "../model/Task";
+import { USER_ROLES } from "../model/User";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 import { TaskRepository } from "./TaskRepository";
@@ -130,7 +131,6 @@ export class TaskBusiness {
             throw new NotFoundElementError("task not found")
         }
 
-        
 
         return userTask.map((task) => {
             return {
@@ -145,18 +145,36 @@ export class TaskBusiness {
             }
         })
 
-        // const tasks = {
-        //     id: userTask.getId(),
-        //     title: userTask.getTitle(),
-        //     description: userTask.getDescription(),
-        //     created_time: userTask.getCreatedTime(),
-        //     limit_date: userTask.getLimitDate(),
-        //     edited_time: userTask.getEditedTime(),
-        //     status: userTask.getStatus(),
-        //     // isLate: isLate
-        // }
+    }
 
-        return userTask
+    async getAllUsersTasks(token: string, page: number, limit: number){
+
+        if (!token) {
+            throw new InvalidInputError("'token' missing")
+        }
+
+        if(page <=0){
+            throw new InvalidAuthenticatorError("page must be greater than 0")
+        }
+
+        const userByToken = this.authenticator.getTokenData(token)
+
+        const user = await this.userDataBase.getUserById(userByToken.id)
+
+        if (!user) {
+            throw new InvalidAuthenticatorError("Unauthorized user or does not exist")
+        }
+
+        if(userByToken.role !== USER_ROLES.ADMIN){
+            throw new InvalidAuthenticatorError("Functionality can only be accessed by administrators")
+        }
+
+        const offset = limit * (page - 1)
+        console.log(offset)
+
+        const usersTask = await this.taskDataBase.getAllUsersTasks(offset, limit)
+
+        return usersTask
 
     }
 }
