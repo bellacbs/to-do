@@ -22,19 +22,6 @@ export class TaskDataBase extends BaseDataBase implements TaskRepository {
         }
     }
 
-    async getTaskById(id: string): Promise<Task | null> {
-        const result = await BaseDataBase.connection
-            .select("*")
-            .from(BaseDataBase.tableNames.toDoTasks)
-            .where({ id })
-
-        if (result.length === 0) {
-            return null
-        }
-
-        return Task.toTaskModel(result[0])
-    }
-
     async getTaskAndUserById(taskId: string, userId: string): Promise<Task | null> {
         
         const result = await BaseDataBase.connection
@@ -67,6 +54,21 @@ export class TaskDataBase extends BaseDataBase implements TaskRepository {
             description: task.description,
             limit_date: task.limitDate,
             edited_time: new Date()
+        })
+    }
+
+    async getTaskByUserId(userId: string): Promise<Task[] | null> {
+        const result = await BaseDataBase.connection
+            .select("*")
+            .from(BaseDataBase.tableNames.toDoTasks)
+            .where({creator_user_id: userId})
+
+        if (result.length === 0) {
+            return null
+        }
+
+        return result.map((task) => {
+            return Task.toTaskModel(task)
         })
     }
 
