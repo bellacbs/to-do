@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "clear && ts-node-dev ./src/index.ts",
     "start": "tsc && node .build/index.js",
+    "dev": "tsnd --transpile-only --ignore-watch node_modules ./src/index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrations": "tsnd ./src/data/Migrations.ts"
   },
