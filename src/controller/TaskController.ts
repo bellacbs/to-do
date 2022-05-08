@@ -83,4 +83,34 @@ export class TaskController {
             res.status(400).send({ error: error.message });
         }
     }
+
+    async getAllUsersTasks(req: Request, res: Response){
+        try{
+            const token = req.headers.authorization as string
+            const page = Number(req.query.page as string) | 1
+            const limit = Number(req.query.limit as string) | 10
+
+            const tasks = await this.taskBusiness.getAllUsersTasks(token, page, limit)
+
+            res.status(200).send({tasks: tasks})
+
+        }catch(error: any){
+            res.status(400).send({ error: error.message });
+        }
+    }
+
+    async getLateTasks(req: Request, res: Response){
+        try{
+            const token = req.headers.authorization as string
+            const page = Number(req.query.page as string) | 1
+            const limit = Number(req.query.limit as string) | 10
+
+            const tasks = await this.taskBusiness.getLateTasks(token, page, limit)
+
+            res.status(200).send({tasks: tasks})
+
+        }catch(error: any){
+            res.status(400).send({ error: error.message });
+        }
+    }
 }
