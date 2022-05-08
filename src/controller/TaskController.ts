@@ -71,4 +71,16 @@ export class TaskController {
             res.status(400).send({ error: error.message });
         }
     }
+
+    async getUserTasks(req: Request, res: Response){
+        try{
+            const token = req.headers.authorization as string
+            const tasks = await this.taskBusiness.getUserTasks(token)
+
+            res.status(200).send({tasks: tasks})
+
+        }catch(error: any){
+            res.status(400).send({ error: error.message });
+        }
+    }
 }
