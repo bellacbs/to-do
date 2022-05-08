@@ -26,12 +26,48 @@ export class TaskController {
                 limitDate: req.body.limitDate
             }
 
-            await this.taskBusiness.createTask(req.headers.authorization as string, inputTask)
+            const token = req.headers.authorization as string
+
+            await this.taskBusiness.createTask(token , inputTask)
 
             res.status(200).send("task created successfully");
 
         }
         catch (error: any) {
+            res.status(400).send({ error: error.message });
+        }
+    }
+
+    async putTaskAsDone(req: Request, res: Response) {
+        try{
+            const taskId = req.params.taskId as string
+            const token = req.headers.authorization as string
+
+            await this.taskBusiness.putTaskAsDone(token, taskId)
+
+            res.status(200).send("task completed successfully")
+
+        }catch(error: any){
+            res.status(400).send({ error: error.message });
+        }
+    }
+
+    async editTask(req: Request, res: Response) {
+        try{
+            const inputTask: TaskInputDTO = {
+                title: req.body.title,
+                description: req.body.description,
+                limitDate: req.body.limitDate
+            }
+
+            const taskId = req.params.taskId as string
+            const token = req.headers.authorization as string
+
+            await this.taskBusiness.editTask(token,inputTask, taskId)
+
+            res.status(200).send("task edited successfully")
+
+        }catch(error: any){
             res.status(400).send({ error: error.message });
         }
     }

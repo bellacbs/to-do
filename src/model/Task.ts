@@ -6,6 +6,7 @@ export class Task {
         private createdTime: Date,
         private limitDate: Date,
         private editedTime: Date | null,
+        private finishedTime: Date | null,
         private status: TASK_STATUS,
         private creatorUserId: string
 
@@ -28,6 +29,9 @@ export class Task {
     }
     getEditedTime() {
         return this.editedTime
+    }
+    getFinishedTime() {
+        return this.finishedTime
     }
 
     getStatus() {
@@ -61,6 +65,10 @@ export class Task {
         this.editedTime = editedTime
     }
 
+    setFinishedTime(finishedTime: Date | null) {
+        this.finishedTime = finishedTime
+    }
+
     setStatus(status: TASK_STATUS) {
         this.status = status
     }
@@ -77,6 +85,7 @@ export class Task {
             task.createdTime || task.created_time,
             task.limitDate || task.limit_date,
             task.editedTime || task.edited_time,
+            task.finishedTime || task.finished_time,
             task.status,
             task.creatorUserId || task.creator_user_id
         )
