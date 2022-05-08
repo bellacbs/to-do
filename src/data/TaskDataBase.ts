@@ -76,7 +76,7 @@ export class TaskDataBase extends BaseDataBase implements TaskRepository {
         const result = await BaseDataBase.connection
             .select(`${BaseDataBase.tableNames.toDoTasks}.id as taskId`, "title", "description", "limit_date as limitDate", "email")
             .from(BaseDataBase.tableNames.toDoTasks)
-            .join(BaseDataBase.tableNames.toDoUsers, {'creator_user_id': `${BaseDataBase.tableNames.toDoUsers}.id`})
+            .join(BaseDataBase.tableNames.toDoUsers, { 'creator_user_id': `${BaseDataBase.tableNames.toDoUsers}.id` })
             .limit(limit)
             .offset(offset)
 
@@ -85,6 +85,23 @@ export class TaskDataBase extends BaseDataBase implements TaskRepository {
         }
 
         return result
+    }
 
+    async getLateTasks(offset: number, limit: number): Promise<any | null> {
+
+        const result = await BaseDataBase.connection.raw(`
+        SELECT task.id as taskId, title, description, limit_date as limitDate, email
+        FROM ${BaseDataBase.tableNames.toDoTasks} as task
+        JOIN ${BaseDataBase.tableNames.toDoUsers} as user
+        WHERE limit_date < CURDATE()
+        LIMIT ${limit}
+        OFFSET ${offset}
+        `)
+
+        if (result.length[0] === 0) {
+            return null
+        }
+
+        return result[0][0]
     }
 }

@@ -170,9 +170,38 @@ export class TaskBusiness {
         }
 
         const offset = limit * (page - 1)
-        console.log(offset)
 
         const usersTask = await this.taskDataBase.getAllUsersTasks(offset, limit)
+
+        return usersTask
+
+    }
+
+    async getLateTasks(token: string, page: number, limit: number){
+
+        if (!token) {
+            throw new InvalidInputError("'token' missing")
+        }
+
+        if(page <=0){
+            throw new InvalidAuthenticatorError("page must be greater than 0")
+        }
+
+        const userByToken = this.authenticator.getTokenData(token)
+
+        const user = await this.userDataBase.getUserById(userByToken.id)
+
+        if (!user) {
+            throw new InvalidAuthenticatorError("Unauthorized user or does not exist")
+        }
+
+        if(userByToken.role !== USER_ROLES.ADMIN){
+            throw new InvalidAuthenticatorError("Functionality can only be accessed by administrators")
+        }
+
+        const offset = limit * (page - 1)
+
+        const usersTask = await this.taskDataBase.getLateTasks(offset, limit)
 
         return usersTask
 
