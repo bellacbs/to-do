@@ -27,16 +27,16 @@ As seguintes bibliotecas e linguagens foram usadas na construção do projeto:
 
 <h2 id="funciona">:heavy_check_mark: O que funciona</h2>
 
-<h3>Back-End</h3> - <a href="https://documenter.getpostman.com/view/20822987/UyxeooLC">Link Documentação- Postman</a>
-* {{BASE_URL}}/user/signup => Cadastrar Usuário;
-* {{BASE_URL}}/user/login => Fazer Login de Usuário;
-* {{BASE_URL}}/task/create => Cadastrar tarefas;
-* {{BASE_URL}}/task/done/:taskId => Colocar tarefa como feita;
-* {{BASE_URL}}/task/edit/:taskId => Editar Tarefa;
-* {{BASE_URL}}/task/userTasks => Ver tarefas do próprio usuário;
-* {{BASE_URL}}/user/login => Administrador pode entrar na plataforma;
-* {{BASE_URL}}/task/allUsersTasks => Administrador pode ver tarefas de todos os usuários;
-* {{BASE_URL}}/task/lateTasks => Administrador pode ver tarefas atrasadas de todos os usuários;
+<h3>Back-End</h3> - <a href="https://documenter.getpostman.com/view/20822987/UyxeooLC">Link Documentação- Postman</a></br>
+* {{BASE_URL}}/user/signup => Cadastrar Usuário;</br>
+* {{BASE_URL}}/user/login => Fazer Login de Usuário;</br>
+* {{BASE_URL}}/task/create => Cadastrar tarefas;</br>
+* {{BASE_URL}}/task/done/:taskId => Colocar tarefa como feita;</br>
+* {{BASE_URL}}/task/edit/:taskId => Editar Tarefa;</br>
+* {{BASE_URL}}/task/userTasks => Ver tarefas do próprio usuário;</br>
+* {{BASE_URL}}/user/login => Administrador pode entrar na plataforma;</br>
+* {{BASE_URL}}/task/allUsersTasks => Administrador pode ver tarefas de todos os usuários;</br>
+* {{BASE_URL}}/task/lateTasks => Administrador pode ver tarefas atrasadas de todos os usuários;</br>
 
  
 <h2 id="pendente">:construction: Em desenvolvimento</h2>
