@@ -28,7 +28,7 @@ As seguintes bibliotecas e linguagens foram usadas na construção do projeto:
 
 <h2 id="funciona">:heavy_check_mark: O que funciona</h2>
 
-<h3>Back-End</h3> - <a href="https://documenter.getpostman.com/view/20822987/UyxeooLC">Link Documentação- Postman</a></br>
+<a href="https://documenter.getpostman.com/view/20822987/UyxeooLC">Link Documentação- Postman</a></br>
 * {{BASE_URL}}/user/signup => Cadastrar Usuário;</br>
 * {{BASE_URL}}/user/login => Fazer Login de Usuário;</br>
 * {{BASE_URL}}/task/create => Cadastrar tarefas;</br>
@@ -76,6 +76,7 @@ $ npm run migrations
 $ npm run start
 
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+# incluir rotas, conforme documentação
 ```
 
 
