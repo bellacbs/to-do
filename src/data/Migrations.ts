@@ -2,8 +2,8 @@ import BaseDataBase from "./BaseDataBase";
 
 export class Migrations extends BaseDataBase {
     static createTables = () => BaseDataBase.connection
-    .raw(
-        `
+        .raw(
+            `
         CREATE TABLE IF NOT EXISTS to_do_users (
             id VARCHAR(255) PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
@@ -25,10 +25,10 @@ export class Migrations extends BaseDataBase {
             FOREIGN KEY(creator_user_id) REFERENCES to_do_users(id)
         );
         `
-    )
-    .then(() => console.log("Created tables"))
-    .catch((error: any) => console.log(error.message || error.sqlMessage))
-    
+        )
+        .then(() => console.log("Created tables"))
+        .catch((error: any) => console.log(error.message || error.sqlMessage))
+
 
     static closeConnection = () => this.connection.destroy();
 };

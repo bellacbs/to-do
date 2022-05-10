@@ -11,19 +11,17 @@ export class UserDatabase extends BaseDataBase implements UserRepository {
         password: string,
         role: string
     ): Promise<void> {
-        try {
-            await BaseDataBase.connection
-                .insert({
-                    id,
-                    email,
-                    name,
-                    password,
-                    role
-                })
-                .into(BaseDataBase.tableNames.toDoUsers);
-        } catch (error: any) {
-            throw new Error(error.sqlMessage || error.message);
-        }
+
+        await BaseDataBase.connection
+            .insert({
+                id,
+                email,
+                name,
+                password,
+                role
+            })
+            .into(BaseDataBase.tableNames.toDoUsers);
+
     }
 
     public async getUserByEmail(email: string): Promise<User | null> {

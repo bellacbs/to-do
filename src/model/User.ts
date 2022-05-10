@@ -1,3 +1,5 @@
+import { InvalidInputError } from "../error/InvalidInputError";
+
 export class User {
     constructor(
         private id: string,
@@ -54,7 +56,7 @@ export class User {
             case "ADMIN":
                 return USER_ROLES.ADMIN;
             default:
-                throw new Error("Invalid user role");
+                throw new InvalidInputError("Invalid user role");
         }
     }
 
