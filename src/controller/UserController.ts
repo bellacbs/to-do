@@ -32,7 +32,7 @@ export class UserController {
             res.status(200).send({ token });
 
         } catch (error: any) {
-            res.status(400).send({ error: error.message });
+            res.status(error.code || 500).send({ error: error.message } || { error: "Internal Server Error" });
         }
     }
 
@@ -50,7 +50,7 @@ export class UserController {
             res.status(200).send({ token });
 
         } catch (error: any) {
-            res.status(400).send({ error: error.message });
+            res.status(error.code || 500).send({ error: error.message } || { error: "Internal Server Error" });
         }
 
     }
