@@ -6,6 +6,8 @@ import { Task, TaskInputDTO, TASK_STATUS } from "../model/Task";
 import { USER_ROLES } from "../model/User";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
+import { convertDate } from "../utils/convertDate";
+import { isValidDate } from "../utils/isValidDate";
 import { TaskRepository } from "./TaskRepository";
 import { UserRepository } from "./UserRepository";
 
@@ -37,9 +39,19 @@ export class TaskBusiness {
             throw new InvalidAuthenticatorError("Unauthorized user or does not exist")
         }
 
+        if (!isValidDate(task.limitDate)) {
+            throw new InvalidInputError("limitDate must be of the format dd/mm/yyyy, dd-mm-yyyy or dd.mm.yyyy")
+        }
+
         const createdTime = new Date()
 
-        const limiteDate = new Date(task.limitDate)
+        const newLimiteDate = convertDate(task.limitDate)
+
+        const limiteDate = new Date(newLimiteDate)
+
+        if (limiteDate.getTime() < createdTime.getTime()) {
+            throw new InvalidInputError("limitDate must be greater than the current date")
+        }
 
         const taskId = this.idGenerator.generateId()
 
@@ -147,13 +159,13 @@ export class TaskBusiness {
 
     }
 
-    async getAllUsersTasks(token: string, page: number, limit: number){
+    async getAllUsersTasks(token: string, page: number, limit: number) {
 
         if (!token) {
             throw new InvalidInputError("'token' missing")
         }
 
-        if(page <=0){
+        if (page <= 0) {
             throw new InvalidAuthenticatorError("page must be greater than 0")
         }
 
@@ -165,7 +177,7 @@ export class TaskBusiness {
             throw new InvalidAuthenticatorError("Unauthorized user or does not exist")
         }
 
-        if(userByToken.role !== USER_ROLES.ADMIN){
+        if (userByToken.role !== USER_ROLES.ADMIN) {
             throw new InvalidAuthenticatorError("Functionality can only be accessed by administrators")
         }
 
@@ -177,13 +189,13 @@ export class TaskBusiness {
 
     }
 
-    async getLateTasks(token: string, page: number, limit: number){
+    async getLateTasks(token: string, page: number, limit: number) {
 
         if (!token) {
             throw new InvalidInputError("'token' missing")
         }
 
-        if(page <=0){
+        if (page <= 0) {
             throw new InvalidAuthenticatorError("page must be greater than 0")
         }
 
@@ -195,7 +207,7 @@ export class TaskBusiness {
             throw new InvalidAuthenticatorError("Unauthorized user or does not exist")
         }
 
-        if(userByToken.role !== USER_ROLES.ADMIN){
+        if (userByToken.role !== USER_ROLES.ADMIN) {
             throw new InvalidAuthenticatorError("Functionality can only be accessed by administrators")
         }
 

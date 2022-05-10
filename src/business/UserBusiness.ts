@@ -4,6 +4,8 @@ import { HashManager } from "../services/HashManager";
 import { Authenticator } from "../services/Authenticator";
 import { UserRepository } from "./UserRepository";
 import { InvalidInputError } from "../error/InvalidInputError";
+import { NotAllowedError } from "../error/NotAllowedError";
+import { InvalidAuthenticatorError } from "../error/InvalidAuthenticatorError";
 
 export class UserBusiness {
 
@@ -34,7 +36,7 @@ export class UserBusiness {
         const userFromDB = await this.userDatabase.getUserByEmail(user.email);
 
         if (userFromDB) {
-            throw new Error(`User already exists with email ${user.email}`)
+            throw new NotAllowedError(`User already exists with email ${user.email}`)
         }
 
         const id = this.idGenerator.generateId();
@@ -61,7 +63,7 @@ export class UserBusiness {
         const userFromDB = await this.userDatabase.getUserByEmail(user.email);
 
         if (!userFromDB) {
-            throw new Error(`User already exists with email ${user.email}`)
+            throw new NotAllowedError(`User already exists with email ${user.email}`)
         }
 
         const hashCompare = this.hashManager.compareHash(user.password, userFromDB.getPassword());
@@ -69,7 +71,7 @@ export class UserBusiness {
         const accessToken = this.authenticator.generateToken({ id: userFromDB.getId(), role: userFromDB.getRole() });
 
         if (!hashCompare) {
-            throw new Error("Invalid Password!");
+            throw new InvalidAuthenticatorError("Invalid Password!");
         }
 
         return accessToken;
