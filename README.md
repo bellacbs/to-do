@@ -47,6 +47,10 @@ As seguintes bibliotecas e linguagens foram usadas na construção do projeto:
 
 <h2 id="requisitos">:leftwards_arrow_with_hook: Pré-requisitos</h2>
 
+Caso deseje fazer as requisições utilizando a API criada no Heroku, ver <a href="https://documenter.getpostman.com/view/20822987/UyxeooLC"> documentação </a></br>
+
+Caso deseje rodar o projeto em sua máquina local, seguir os passos abaixo:</br>
+
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
