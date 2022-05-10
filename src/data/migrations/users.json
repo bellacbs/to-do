@@ -1,0 +1,44 @@
+[
+    {
+        "id": "82ea47b4-286e-43cd-b757-15abd924abb9",
+        "name": "fulano",
+        "email": "fulano@gmail.com",
+        "password": "$2a$12$O0QiQFtpgbdPuaSMwZwAnOPwVYMhYqbVUwykxVnKaHhaDkld/2P32",
+        "role": "ADMIN"
+    },
+    {
+        "id": "9fb00ca2-160d-4bb8-88b7-83b06992defb",
+        "name": "cilano",
+        "email": "cilano@gmail.com",
+        "password": "$2a$12$9iGPtFLtexFOYVVbyIdfg.rYSKkmRQae/WbsE.hdixNNIifdO.EUS",
+        "role": "NORMAL"
+    },
+    {
+        "id": "b2bad032-52a4-412d-bbff-ba80fa647ca1",
+        "name": "Wellington",
+        "email": "wellington@gmail.com",
+        "password": "$2a$12$zsFD7dGxHxlQdsTMT9IdVeFuMs0izVqyb2SNGN.d/dPwEv4HKEXkC",
+        "role": "NORMAL"
+    },
+    {
+        "id": "d8743bc9-060b-40bc-80e4-ab5bd3c12dcf",
+        "name": "Daniella",
+        "email": "Dani@gmail.com",
+        "password": "$2a$12$U9JnQHKFj5/P6DX4ew9b9eYMHtDyEuCnnmP6U3JwfGRyWiwYan8wy",
+        "role": "NORMAL"
+    },
+    {
+        "id": "e6e4d4c3-6b92-40c1-9d0b-3c6ee5d31f28",
+        "name": "Pedro",
+        "email": "pedro@gmail.com",
+        "password": "$2a$12$aiUc/Hzsp4j/.x9Lg0B4V.DR19PVIVuNDDs8uMkU1/kLDql6pagd6",
+        "role": "NORMAL"
+    },
+    {
+        "id": "f1554af4-ed6a-4b39-9846-4e778c92b982",
+        "name": "Izabella",
+        "email": "iza@gmail.com",
+        "password": "$2a$12$JO49kkmCQsAwboGoTmfvHuWKgoHXYV3bL1NAaJ01mrHw5NUc.2pyq",
+        "role": "NORMAL"
+    }
+]
