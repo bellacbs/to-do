@@ -28,16 +28,16 @@ As seguintes bibliotecas e linguagens foram usadas na construção do projeto:
 
 <h2 id="funciona">:heavy_check_mark: O que funciona</h2>
 
-<h3>Back-End</h3> - <a href="https://documenter.getpostman.com/view/20822987/UyxeooLC">Link Documentação- Postman</a></br>
-* {{BASE_URL}}/user/signup => Cadastrar Usuário;</br>
-* {{BASE_URL}}/user/login => Fazer Login de Usuário;</br>
-* {{BASE_URL}}/task/create => Cadastrar tarefas;</br>
-* {{BASE_URL}}/task/done/:taskId => Colocar tarefa como feita;</br>
-* {{BASE_URL}}/task/edit/:taskId => Editar Tarefa;</br>
-* {{BASE_URL}}/task/userTasks => Ver tarefas do próprio usuário;</br>
-* {{BASE_URL}}/user/login => Administrador pode entrar na plataforma;</br>
-* {{BASE_URL}}/task/allUsersTasks => Administrador pode ver tarefas de todos os usuários;</br>
-* {{BASE_URL}}/task/lateTasks => Administrador pode ver tarefas atrasadas de todos os usuários;</br>
+<a href="https://documenter.getpostman.com/view/20822987/UyxeooLC">Link Documentação- Postman</a></br>
+* Cadastrar Usuário;</br>
+* Fazer Login de Usuário;</br>
+* Cadastrar tarefas;</br>
+* Colocar tarefa como feita;</br>
+* Editar Tarefa;</br>
+* Ver tarefas do próprio usuário;</br>
+* Administrador pode entrar na plataforma;</br>
+* Administrador pode ver tarefas de todos os usuários;</br>
+* Administrador pode ver tarefas atrasadas de todos os usuários;</br>
 
  
 <h2 id="pendente">:construction: Em desenvolvimento</h2>
@@ -46,6 +46,10 @@ As seguintes bibliotecas e linguagens foram usadas na construção do projeto:
 
 
 <h2 id="requisitos">:leftwards_arrow_with_hook: Pré-requisitos</h2>
+
+Caso deseje fazer as requisições utilizando a API criada no Heroku, ver <a href="https://documenter.getpostman.com/view/20822987/UyxeooLC"> documentação </a></br>
+
+Caso deseje rodar o projeto em sua máquina local, seguir os passos abaixo:</br>
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
@@ -76,6 +80,7 @@ $ npm run migrations
 $ npm run start
 
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+# incluir rotas, conforme documentação
 ```
 
 

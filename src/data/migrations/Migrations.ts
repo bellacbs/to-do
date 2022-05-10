@@ -1,4 +1,6 @@
-import BaseDataBase from "./BaseDataBase";
+import BaseDataBase from "../BaseDataBase";
+import users from "./users.json";
+import tasks from "./tasks.json";
 
 export class Migrations extends BaseDataBase {
     static createTables = () => BaseDataBase.connection
@@ -29,8 +31,21 @@ export class Migrations extends BaseDataBase {
         .then(() => console.log("Created tables"))
         .catch((error: any) => console.log(error.message || error.sqlMessage))
 
+    
+
+
+    static insertUsers = () => this.connection(this.tableNames.toDoUsers)
+    .insert(users)
+    .then(() => console.log("Created Users"))
+
+    static insertTasks = () => this.connection(this.tableNames.toDoTasks)
+    .insert(tasks)
+    .then(() => console.log("Created Tasks"))
 
     static closeConnection = () => this.connection.destroy();
 };
 
-Migrations.createTables().then(Migrations.closeConnection)
+Migrations.createTables()
+.then(Migrations.insertUsers)
+.then(Migrations.insertTasks)
+.then(Migrations.closeConnection)
