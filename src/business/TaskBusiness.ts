@@ -102,6 +102,16 @@ export class TaskBusiness {
             throw new InvalidInputError("title and description must be of type string")
         }
 
+        if (!isValidDate(task.limitDate)) {
+            throw new InvalidInputError("limitDate must be of the format dd/mm/yyyy, dd-mm-yyyy or dd.mm.yyyy")
+        }
+
+        const limiteDate = convertDate(task.limitDate)
+
+        if (new Date(limiteDate).getTime() < new Date().getTime()) {
+            throw new InvalidInputError("limitDate must be greater than the current date")
+        }
+
         const userByToken = this.authenticator.getTokenData(token)
 
         const user = await this.userDataBase.getUserById(userByToken.id)
@@ -120,7 +130,14 @@ export class TaskBusiness {
             throw new NotAllowedError("Not allowed, task already completed")
         }
 
-        await this.taskDataBase.updateTask(taskId, task)
+        const newTask: TaskInputDTO = {
+            title: task.title,
+            description: task.description,
+            limitDate: limiteDate,
+
+        }
+
+        await this.taskDataBase.updateTask(taskId, newTask)
 
     }
 
