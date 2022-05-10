@@ -20,6 +20,10 @@ export default class BaseDataBase {
             database: process.env.DB_SCHEMA,
             multipleStatements: true
         },
+        pool: {
+            min: 0,
+            max: 7
+        }
     });
 
 };
