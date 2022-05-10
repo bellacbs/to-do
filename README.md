@@ -4,6 +4,7 @@
   <a href="#sobre">Sobre</a> &#xa0; | &#xa0; 
   <a href="#funciona">O que funciona</a> &#xa0; | &#xa0;
   <a href="#pendente">Em desenvolvimento</a> &#xa0; | &#xa0;
+  <a href="#requisitos">Pré requisitos</a> &#xa0; | &#xa0;
 </p>
 
 <h2 id="sobre">:notebook: Sobre </h2>
@@ -42,10 +43,40 @@ As seguintes bibliotecas e linguagens foram usadas na construção do projeto:
 <h2 id="pendente">:construction: Em desenvolvimento</h2>
 
 - [x] Testes
-- [x] Melhorar Documentação
 
-<h3>Front-End</h3>
-- [x] Não Iniciado
+
+<h2 id="requisitos">:leftwards_arrow_with_hook: Pré-requisitos</h2>
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+<h4>:checkered_flag: Rodando o projeto </h4>
+
+```bash
+# Clone este repositório
+
+# Instale as dependências
+$ npm install
+
+# crie na pasta raiz o arquivo .env com as seguintes variáveis ambiente
+DB_USER
+DB_PASSWORD
+DB_HOST
+DB_SCHEMA 
+DB_PORT
+BCRYPT_COST 
+JWT_KEY
+ACCESS_TOKEN_EXPIRES_IN 
+
+# Para Criar tabela no banco de dados e popular o banco
+$ npm run migrations
+
+# Para iniciar o projeto
+$ npm run start
+
+# O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+```
 
 
 <a href="#top">Voltar para o topo</a>
