@@ -50,7 +50,7 @@ export class UserBusiness {
         return accessToken;
     }
 
-    async getUserByEmail(user: LoginInputDTO) {
+    async login(user: LoginInputDTO) {
 
         if (!user.email || !user.password) {
             throw new InvalidInputError("All fields must be filled")
